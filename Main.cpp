@@ -5,6 +5,15 @@
 #include <algorithm>
 #include <forward_list>
 
+#ifdef _DEBUG
+#ifndef DBG_NEW
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define new DBG_NEW
+#endif
+#endif  // _DEBUG
+
+
+
 void print(int);
 void generate_data();
 void print_test_data();
@@ -34,6 +43,8 @@ void FowardSort(FowardIterator begin, FowardIterator end)
 
 int main()
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
 	//Initalize random
 	srand((unsigned)time(NULL));
 	generate_data();
